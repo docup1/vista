@@ -1,0 +1,61 @@
+edith:
+  name: "Vista"
+  persona: "concise"          # concise | verbose | coder | default
+  wake_words: ["виста", "vista", "эдит", "edith", "джарвис", "jarvis"]
+
+models:
+  llm:
+    model: "phi3:3.8b-mini-4k-instruct-q4_K_M"
+    host: "http://localhost:11434"
+    temperature: 0.3           # минимальная = быстрее + стабильнее
+    max_tokens: 64             # короткие ответы
+    context_window: 1024       # меньше контекста = быстрее инференс
+    keep_alive: -1             # всегда в памяти
+    num_thread: 8              # все ядра M4
+    stop_tokens:
+      - "<|end|>"
+      - "<|user|>"
+      - "<|system|>"
+      - "<|assistant|>"
+  stt:
+    model_size: "base"
+    language: "ru"
+    compute_type: "int8"
+  tts:
+    engine: "piper"           # piper (нейросетевой) | macos_say (системный)
+    voice: "ru_RU-denis-medium"   # Denis — мужской
+    rate: 190                 # только для macos_say (140=медл, 190=норм, 240=быстро)
+    piper_model_dir: "./data/piper"
+  embeddings:
+    model: "nomic-embed-text"
+    host: "http://localhost:11434"
+
+memory:
+  collection_name: "edith_memory"
+  persist_dir: "./data/chroma"
+  max_context_messages: 6     # меньше контекста = быстрее инференс
+  max_context_tokens: 800     # жёсткий лимит токенов
+  summarize_threshold: 8      # после 8 сообщений — сжатие
+
+skills:
+  auto_discover: true
+  paths:
+    - "skills.system"
+    - "skills.dev"
+    - "skills.productivity"
+    - "skills.home"
+
+voice:
+  sample_rate: 16000
+  silence_threshold: 250        # порог тишины (было 100 — слишком низко)
+  silence_duration: 1.2
+  max_record_duration: 15.0
+  input_device: null
+
+ui:
+  default: "cli"
+
+daemon:
+  active_timeout: 10.0        # сек молчания в диалоге → возврат в фон
+
+debug: false

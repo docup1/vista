@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.idea/workspace.xml
+.idea/dataSources/
+.idea/dataSources.local.xml
+.idea/shelf/
+.idea/httpRequests/
+
+# Data (chroma, models, generated files)
+data/
+
+# Voice models (large .onnx files)
+*.onnx
+*.onnx.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test cache
+.pytest_cache/
+
+# Config override
+config.local.yaml

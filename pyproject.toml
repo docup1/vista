@@ -1,0 +1,48 @@
+[project]
+name = "edith"
+version = "0.1.0"
+description = "Local Jarvis-like AI assistant — only local neural networks"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "EDITH Team" }]
+
+dependencies = [
+    "ollama>=0.4.0",
+    "httpx>=0.27.0",
+    "chromadb>=0.5.0",
+    "pyyaml>=6.0",
+    "rich>=13.0",
+    "textual>=0.60.0",
+    "sounddevice>=0.4.6",
+    "numpy>=1.26.0",
+    "pydantic>=2.0",
+    "colorama>=0.4.6",
+    "click>=8.1",
+]
+
+[project.optional-dependencies]
+voice = [
+    "faster-whisper>=1.0.0",
+    "openwakeword>=0.5.0",
+    "piper-tts>=1.2.0",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+edith = "edith.main:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["core*", "voice*", "brain*", "skills*", "ui*", "perception*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
