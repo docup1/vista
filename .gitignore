@@ -12,11 +12,7 @@ venv/
 env/
 
 # IDE
-.idea/workspace.xml
-.idea/dataSources/
-.idea/dataSources.local.xml
-.idea/shelf/
-.idea/httpRequests/
+.idea/
 
 # Data (chroma, models, generated files)
 data/
